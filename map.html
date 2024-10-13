@@ -1,0 +1,59 @@
+<html>
+</html>
+<head>
+<meta charset="utf-8">
+<title>Guides</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<link href="https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.js"></script>
+<style>
+   button{
+      position: absolute;
+      margin-top: 10px;
+      margin-left: 10px;
+      z-index: 1000;
+   }
+body { margin: 0; padding: 0; }
+#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+</style>
+</head>
+<body>
+<div id="map">
+   <button onclick="btn()">Show stops between sulur to ukkadam</button>
+</div>
+<script>
+
+   mapboxgl.accessToken = 'pk.eyJ1IjoicmFuaml0aGFrdW1hcmkiLCJhIjoiY2xtdWRsbWJ2MGdydTJrb2NsbHFxb2FtZCJ9.-qKxuxJvt-qwoSwa-hBXeA';
+const map = new mapboxgl.Map({
+container: 'map',
+style: 'mapbox://styles/mapbox/streets-v9',
+// projection: 'globe', // Display the map as a globe, since satellite-v9 defaults to Mercator
+zoom: 12,
+// center: [77.122728,11.025237]
+center: [77.108824,11.023618]
+});
+var right=[11.025237,11.025180,11.025071,11.024618,11.022286,11.018899,
+   11.014016,11.009929,11.008556,11.007992,11.007722,11.007701,11.007718,
+   11.006560,11.004445,11.004783,11.004611,11.002850,11.002488,11.002624,
+   11.003150,11.003737,11.003866,11.002401,11.001332,11.000617]
+ var left=[77.122728,77.120118,77.116444,77.110972,77.103686,77.095180,
+   77.086823,77.080024,77.075763,77.074208,77.073036,77.072190,77.071360,
+   77.069034,77.065802,77.066378,77.065946,77.062578,77.059967,77.052884,
+   77.049619,77.046495,77.044461,77.038982,77.033672,77.029861]
+ var value =0
+ const marker2 = new mapboxgl.Marker()
+ 
+function btn(){
+   setInterval(move,1000)
+
+}
+function move(){
+   marker2
+.setLngLat([left[value],right[value]])
+.addTo(map);
+value++
+}
+</script>
+</body>
+</html>
+
